@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Proposal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url(./image/pexels-jessbaileydesign-1172849.jpg);
+            background-size: cover;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        #love-icon-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .love-icon {
+            position: absolute;
+            font-size: 32px;
+            color: #ff0066;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        #message-container {
+            text-align: center;
+            opacity: 0;
+            transform: scale(0);
+            transition: opacity 1s, transform 1s;
+        }
+        #message {
+            font-size: 60px;
+            color: #ff0066;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        #love-icon {
+            font-size:50px;
+            color: #ff0066;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        #button-container {
+            text-align: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        button {
+            font-size: 24px;
+            padding: 10px 20px;
+            background-color: #ff0066;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #cc0052;
+        }
+
+        @media (max-width: 600px) {
+            #message {
+                font-size: 24px;
+            }
+            #love-icon {
+                font-size: 24px;
+            }
+            button {
+                font-size: 20px;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <audio id="background-music" loop>
+        <source src="./image/song (mp3cut.net).mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div id="love-icon-container"></div>
+
+    <div id="message-container">
+        <img style="height: 300px; width: 300px; border-radius:60px;" src="./image/Screenshot_20240819-131628~2.png" alt="">
+        <div id="message" style="font: weight 100px;"> Hope to be a part of your happiness. With warmest wishes from another universe.</div> <span id="love-icon">❤️</span>
+    </div>
+
+    <div id="button-container">
+        <button onclick="showMessage()">Click me</button>
+    </div>
+
+    <script>
+        function createFallingHearts() {
+            const container = document.getElementById('love-icon-container');
+
+            for (let i = 0; i < 50; i++) { // Increase the number of hearts
+                const heart = document.createElement('div');
+                heart.classList.add('love-icon');
+                heart.textContent = '❤️';
+                
+                // Randomize the initial position and animation duration
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = Math.random() * 3 + 2 + 's'; // Between 2s to 5s
+                heart.style.animationDelay = Math.random() * 2 + 's'; // Delays for staggered effect
+
+                container.appendChild(heart);
+            }
+        }
+
+        function showMessage() {
+            var messageContainer = document.getElementById("message-container");
+            messageContainer.style.opacity = "1";
+            messageContainer.style.transform = "scale(1)";
+
+            var button = document.getElementById("button-container");
+            button.style.display = "none";
+
+            var audio = document.getElementById("background-music");
+            audio.play(); // This line plays the audio
+        }
+
+        // Create falling hearts on page load
+        createFallingHearts();
+    </script>
+</body>
+</html>
